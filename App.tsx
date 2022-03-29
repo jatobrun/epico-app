@@ -1,18 +1,12 @@
 import React from 'react';
-import { View , Text, StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import Navigation from './src/navigation/Navigation';
 
 const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Centro de emprendimiento</Text>
-    </View>
+    <NavigationContainer>
+      <Navigation />
+    </NavigationContainer>
   )
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
-  }
-})
 export default App;
