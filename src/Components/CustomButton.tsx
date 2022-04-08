@@ -1,19 +1,23 @@
 import React, { Key } from 'react';
-import { View,Text, StyleSheet, Pressable} from 'react-native';
+import { View,Text, StyleSheet, Pressable} from 'react-native'; 
+import Navigation from '../navigation/Navigation';
+import { NavigationContainer } from '@react-navigation/native';
 
 type ItemsProp ={
     text: string;
     tipo: "PRIMARY" | "INFO" | "SECONDARY";
+    onPress(): void
 }
 
 const onPressed = () => {
     console.warn(`Se ha presionado el boton ...`);
-    
 }
 
-const CustomButton = ({text,tipo}:ItemsProp) => {
+const CustomButton = ({text,tipo,onPress}:ItemsProp) => {
     return(
-        <Pressable style={styles.container} onPress={onPressed}>
+        <Pressable 
+            style={styles.container} 
+            onPress={onPressed}>
             <Text style={[styles.button, styles[`button_${tipo}`]]}>{text}</Text>
         </Pressable>
     )

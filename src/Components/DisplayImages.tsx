@@ -4,7 +4,7 @@ import { View, Image, StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    padding: 70
+    padding: 79
   },
   logo1: {
     width: '70%',
