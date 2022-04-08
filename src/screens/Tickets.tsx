@@ -1,117 +1,131 @@
-import { View, Text,Alert,Modal,StyleSheet,Pressable } from 'react-native'
-import Maticon from 'react-native-vector-icons/MaterialCommunityIcons';
+import React, { useState } from "react";
+import { Button, StyleSheet, View,Text,TextInput} from "react-native";
+import Dialog from "react-native-dialog";
+import {Picker} from '@react-native-picker/picker';
+import { Table, TableWrapper, Row, Rows, Col } from 'react-native-table-component';
 
-import React ,{ useState } from 'react';
-import { Button, DatePicker, Icon,WhiteSpace, WingBlank } from '@ant-design/react-native';
-import { TextInput } from 'react-native-gesture-handler';
 
-export default function Tickets() {
-   let iconName = 'InfoCircleTwoTone';
-   const [modalVisible, setModalVisible] = useState(false);
-   const [text,onChangeText]=React.useState("Texto aqui");
+export default function Ticket() {
+  const [visible, setVisible] = useState(false);
+  const[visibletable,setvisibleTable]=useState(false);
+  const [selectedValue, setSelectedValue] = useState("soporte");
+
+  const tableHead = ['Head', 'Head2', 'Head3', 'Head4'];
+    const tableData = [
+      ['1', '2', '3', '4'],
+      ['a', 'b', 'c', 'd'],
+    ];
+  
+
+  const showDialog = () => {
+    setVisible(true);
+  };
+
+  const showTable=()=>{
+    setvisibleTable(true);
+  };
+
+  const handleCancel = () => {
+    setVisible(false);
+  };
+
+  const handleCancelTable = () => {
+    setvisibleTable(false);
+  };
+
+  const handleDelete = () => {
+    // The user has pressed the "Delete" button, so here you can do your own logic.
+    // ...Your logic
+    setVisible(false);
+  };
+
   return (
-   
-   
-    <View style={styles.centeredView}>
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={modalVisible}
-      onRequestClose={() => {
-        Alert.alert("Modal has been closed.");
-        setModalVisible(!modalVisible);
-      }}
-    >
-      <View style={styles.centeredView}>
-        <View style={styles.modalView}>
-       
-      
-      
-      <Maticon name={iconName} size={48} color='#FFF' />
-        <Text>Cita creada exitosamente</Text>
-        <Text>AgrÃ©galo a tu calendario</Text>
-        
-          <Pressable
-            style={[styles.button, styles.buttonClose]}
-            onPress={() => setModalVisible(!modalVisible)}
-          >
-          <Text style={styles.textStyle}>Entendido</Text>
 
-          </Pressable>
-        </View>
+    
+    <View style={styles.container}>
+      <View style={styles.button}>
+      <Button title="Crear Ticket" onPress={showDialog} />
+     </View>
+     <View style={styles.button}>
+      <Button title="Ver Tickets" onPress={showTable} />
       </View>
-    </Modal>
-    <Pressable
-      style={[styles.button, styles.buttonOpen]}
-      onPress={() => setModalVisible(true)}
-    >
-     
-      <Text style={styles.textStyle}>Crear Ticket</Text>
-      
-    </Pressable>
-    <Pressable
-     style={[styles.button, styles.buttonOpen]}
-     onPress={() => setModalVisible(true)}>
-      <Text style={styles.textStyle}>Ver Tickets</Text>
-    </Pressable>
-  </View>
-);
-};
+      <Dialog.Container visible={visible}>
+         <Text>Tipo Ticket</Text>
+      <Picker
+        selectedValue={selectedValue}
+        style={{ height: 50, width: 200 }}
+        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+      >
+       
+        <Picker.Item label="Soporte Tecnico" value="soporte" />
+        <Picker.Item label="Notificacion" value="notificacion" />
+      </Picker>
+      <Text>Categoria</Text>
+      <Picker
+        selectedValue={selectedValue}
+        style={{ height: 50, width: 200 }}
+        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+      >
+       
+        <Picker.Item label="Reagendamiento" value="reagendamiento" />
+        <Picker.Item label="Cancelar Agenda" value="cancelar" />
+      </Picker>
+
+      <Text>SubCategoria</Text>
+      <Picker
+        selectedValue={selectedValue}
+        style={{ height: 50, width: 200 }}
+        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+      >
+       
+        <Picker.Item label="Calamidad Domestica" value="caladom" />
+        <Picker.Item label="Calamidad Familiar" value="calafam" />
+      </Picker>
+      <Text>Descripcion</Text>
+      <TextInput
+     style={styles.input}
+      />
+    
+        
+        <Dialog.Button label="Crear Ticket" onPress={handleCancel} />
+        
+      </Dialog.Container>
+
+      <Dialog.Container visible={visibletable}>
+      <Table>
+          <Row data={tableHead} style={styles.head} textStyle={styles.text}/>
+          <Rows data={tableData} style={styles.row} textStyle={styles.text}/>
+        </Table>
+         <Dialog.Button label="Salir" onPress={handleCancelTable} />
+      </Dialog.Container>
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
-
- 
-centeredView: {
-  flex: 1,
-  justifyContent: "center",
-  alignItems: "center",
-  marginTop: 22
-},
-
-input: {
-  height:40,
-  margin:12,
-  borderWidth:1,
-  padding:10
-
-},
-modalView: {
-  margin: 20,
-  backgroundColor: "white",
-  borderRadius: 20,
-  padding: 35,
-  alignItems: "center",
-  shadowColor: "#000",
-  shadowOffset: {
-    width: 0,
-    height: 2
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
-  shadowOpacity: 0.25,
-  shadowRadius: 4,
-  elevation: 5
-},
-button: {
-  borderRadius: 20,
-  padding: 10,
-  elevation: 2,
-  marginBottom:10
-},
-buttonOpen: {
-  backgroundColor: "#4680ff",
-},
-buttonClose: {
-  backgroundColor: "#4680ff",
-},
-textStyle: {
-  color: "white",
-  fontWeight: "bold",
-  textAlign: "center",
-  fontSize:25
-
-},
-modalText: {
-  marginBottom: 15,
-  textAlign: "center"
-}
-  
+  input: {
+    height: 40,
+    margin: 12,
+ 
+    padding: 10,
+  },
+  head: { height: 50, backgroundColor: '##4680ff' },
+  text: { marginLeft: 5 },
+  row: { height: 50 },
+  button:{
+    alignSelf:'center',
+    borderRadius:20,
+    paddingVertical:10,
+    marginVertical:10,
+    marginTop:10,
+    width:'80%',
+    marginBottom:10
+    
+  }
 });
