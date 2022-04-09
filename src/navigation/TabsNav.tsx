@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Maticon from 'react-native-vector-icons/MaterialCommunityIcons';
-import HomeScreen from '../screens/Home';
+import { HomeScreen } from '../screens/HomeScreen';
 import EntrepreneursScreen from '../screens/Entrepreneurs';
 import ActivitiesScreen from '../screens/Activities';
 import CalendarScreen from '../screens/Calendar';
@@ -11,8 +11,6 @@ import { styles } from '../theme';
 import { colors } from '../theme/colors';
 
 const Tab = createBottomTabNavigator();
-
-
 
 export default function TabsNav() {
   return (
@@ -58,7 +56,10 @@ export default function TabsNav() {
         tabBarStyle: styles.navMain
       })}
       >
-        <Tab.Screen name="Home" component={ HomeScreen } />
+        <Tab.Screen
+        options={{
+          headerShown: true
+        }} name="Home" component={ HomeScreen } />
         <Tab.Screen name="Activities" component={ ActivitiesScreen } />
         <Tab.Screen name="Tickets" component={ TicketsScreen } />
         <Tab.Screen name="Entrepreneurs" component={ EntrepreneursScreen } />

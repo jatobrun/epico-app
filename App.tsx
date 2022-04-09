@@ -1,13 +1,28 @@
 import React from 'react';
-import {View} from 'react-native';
-import Login from './src/screens/Login';
+import { NavigationContainer } from '@react-navigation/native';
+import { Navigation } from './src/navigation/Navigation';
 
+import { Provider as PaperProvider } from 'react-native-paper';
+import ThemePaper from './src/theme/Theme';
+import { AuthProvider } from './src/context/authContext/AuthContext';
+
+const AppState = ({ children }: any) => {
+  return (
+    <AuthProvider>
+      { children }
+    </AuthProvider>
+  )
+}
 
 const App = () => {
   return (
-    <View>
-      <Login/>
-    </View>
+    <PaperProvider theme={ThemePaper}>
+      <NavigationContainer>
+        <AppState>
+          <Navigation />
+        </AppState>
+      </NavigationContainer>
+    </PaperProvider>
   )
 }
 
