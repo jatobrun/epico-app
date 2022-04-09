@@ -1,12 +1,14 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import Navigation from './src/navigation/Navigation';
+import {View} from 'react-native';
+import Login from './src/screens/Login';
+
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Navigation />
-    </NavigationContainer>
+    <View>
+      <Login/>
+    </View>
   )
 }
+
 export default App;
