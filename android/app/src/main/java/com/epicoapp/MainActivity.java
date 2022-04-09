@@ -17,9 +17,4 @@ public class MainActivity extends ReactActivity {
   protected String getMainComponentName() {
     return "epicoapp";
   }
-
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-  super.onCreate(null);
-  }
 }
