@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
-import { colors } from "../../theme/colors";
+import { colors } from "../colors";
 
-export const styles = StyleSheet.create({
+export const loginStyles = StyleSheet.create({
 	main: {
 		flex: 1,
 		justifyContent: 'space-between'

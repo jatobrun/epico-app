@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import epicoApi from '../../api/epicoApi';
 
-import { Usuario, LoginResponse, LoginData  } from '../../interfaces/appInterfaces';
+import { Usuario, LoginResponse, LoginData  } from '../../interfaces/authInterfaces';
 import { authReducer, AuthState } from './AuthReducer';
 
 type AuthContextProps = {

@@ -3,7 +3,7 @@
 export interface LoginResponse {
     codigo:        string;
     mensaje:       string;
-    usuario:          Usuario;
+    data:          Usuario;
     mensaje_error: string;
     token:         string;
 }

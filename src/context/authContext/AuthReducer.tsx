@@ -1,4 +1,4 @@
-import { Usuario } from '../../interfaces/appInterfaces';
+import { Usuario } from '../../interfaces/authInterfaces';
 
 export interface AuthState {
     status: 'checking' | 'authenticated' | 'not-authenticated';
