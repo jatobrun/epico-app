@@ -4,7 +4,7 @@ import Maticon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { HomeScreen } from '../screens/HomeScreen';
 import EntrepreneursScreen from '../screens/Entrepreneurs';
 import ActivitiesScreen from '../screens/Activities';
-import CalendarScreen from '../screens/Calendar';
+import CalendarScreen from '../screens/MyCalendar';
 import TicketsScreen from '../screens/Tickets';
 import { View } from 'react-native';
 import { styles } from '../theme';
@@ -63,7 +63,7 @@ export default function TabsNav() {
         <Tab.Screen name="Activities" component={ ActivitiesScreen } />
         <Tab.Screen name="Tickets" component={ TicketsScreen } />
         <Tab.Screen name="Entrepreneurs" component={ EntrepreneursScreen } />
-        <Tab.Screen name="Calendar" component={ CalendarScreen } />
+        <Tab.Screen name="Calendario" component={ CalendarScreen } />
     </Tab.Navigator>
   )
 }

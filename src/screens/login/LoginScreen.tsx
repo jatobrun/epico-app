@@ -87,7 +87,7 @@ export const LoginScreen = ({ navigation }: Props) => {
 						onPress={ onLogin }>
 						Iniciar sesión
 					</Button>
-					<SeparatorTagline />
+					
 					<Button 
 						mode="contained"
 						uppercase={ false }
@@ -105,7 +105,7 @@ export const LoginScreen = ({ navigation }: Props) => {
 					</Button>
 				</View>
 			</View>
-			<Copyright />
+		
 		</SafeAreaView>
 	)
 }
