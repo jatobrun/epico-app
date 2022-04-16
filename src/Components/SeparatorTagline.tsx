@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     line: {
         height: 1,
         flex: 1,
-        backgroundColor: colors.grey2
+        backgroundColor: "#C4C4C4"
     },
     tag: {
         width: 40,

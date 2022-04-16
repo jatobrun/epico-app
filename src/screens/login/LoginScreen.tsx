@@ -7,10 +7,10 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { AuthContext } from '../../context/authContext/AuthContext';
 import { useForm } from '../../hooks/useForm';
 
-import { SeparatorTagline } from '../../components/SeparatorTagline';
+import { SeparatorTagline } from '../../Components/SeparatorTagline';
 import { styles } from './styles';
 import { colors } from '../../theme/colors';
-import { Copyright } from '../../components/Copyright';
+import { Derechos } from '../../Components/Copyright';
 
 interface Props extends NativeStackScreenProps<any, any> {}
 
@@ -105,7 +105,7 @@ export const LoginScreen = ({ navigation }: Props) => {
 					</Button>
 				</View>
 			</View>
-			<Copyright />
+			<Derechos />
 		</SafeAreaView>
 	)
 }
