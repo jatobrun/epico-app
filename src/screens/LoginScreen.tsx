@@ -3,43 +3,34 @@ import React, { useContext, useEffect } from 'react';
 import { Alert, Image, Keyboard, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { AuthContext } from '../../context/authContext/AuthContext';
-import { useForm } from '../../hooks/useForm';
+import { useForm } from '../hooks/useForm';
+import { doLogin } from '../store/features/auth/actions';
 
-import { SeparatorTagline } from '../../components/SeparatorTagline';
-import { styles } from './styles';
-import { colors } from '../../theme/colors';
-import { Copyright } from '../../components/Copyright';
+import { SeparatorTagline } from '../components/SeparatorTagline';
+import { loginStyles } from '../theme/styles/login';
+import { colors } from '../theme/colors';
+import { Copyright } from '../components/Copyright';
+import { RootState } from '../store';
 
 interface Props extends NativeStackScreenProps<any, any> {}
 
 export const LoginScreen = ({ navigation }: Props) => {
 
-    const { signIn, fakeLogin, errorMessage, removeError } = useContext( AuthContext );
+	const dispatch = useDispatch();
 
     const { correo, password, onChange } = useForm({
 		correo: 'constantino.isaias@mail.com',
 		password: '0111111111' 
-	 });
-
-	useEffect(() => {
-        if( errorMessage.length === 0 ) return;
-
-        Alert.alert( 'Login incorrecto', errorMessage,[{
-            text: 'Ok',
-            onPress: removeError
-        }]);
-
-    }, [ errorMessage ])
-
+	});
+	const { token , user , codigo } = useSelector(( state: RootState ) => state.Auth );
 
     const onLogin = () => {
-        console.log({correo, password});
         Keyboard.dismiss();
-		// navigation.navigate('Tabs')
-		fakeLogin()
-        // signIn({ correo: correo, password });
+		dispatch( doLogin( correo, password ) );
+        console.log( token , user , codigo );
+		navigation.navigate('Tabs')
     }
 
 	const inputLogin = ''
@@ -47,23 +38,23 @@ export const LoginScreen = ({ navigation }: Props) => {
 		console.log( type, payload )
 	}
 	return (
-		<SafeAreaView style={ styles.main }>
+		<SafeAreaView style={ loginStyles.main }>
 			<View>
-				<View style={ styles.brands }>
+				<View style={ loginStyles.brands }>
 					<Image 
-						style={ styles.logoEpico } 
-						source={ require('../../assets/images/brands/logo-epico.png') } 
+						style={ loginStyles.logoEpico } 
+						source={ require('../assets/images/brands/logo-epico.png') } 
 					/>
 					<Image 
-						style={ styles.logoAlcaldia } 
-						source={ require('../../assets/images/brands/logo-alcaldia-guayaquil.png') } 
+						style={ loginStyles.logoAlcaldia } 
+						source={ require('../assets/images/brands/logo-alcaldia-guayaquil.png') } 
 					/>
 				</View>
 				<Image 
-					style={ styles.logoCe } 
-					source={ require('../../assets/images/brands/logo-centro-de-emprendimiento.png') } 
+					style={ loginStyles.logoCe } 
+					source={ require('../assets/images/brands/logo-centro-de-emprendimiento.png') } 
 				/>
-				<View style={ styles.formBox }>
+				<View style={ loginStyles.formBox }>
 					<TextInput
 						label="Usuario"
 						placeholder="Ingrese su usuario"
@@ -83,7 +74,7 @@ export const LoginScreen = ({ navigation }: Props) => {
 					<Button 
 						mode="contained" 
 						uppercase={ false }
-						style={ styles.buttonSignin } 
+						style={ loginStyles.buttonSignin } 
 						onPress={ onLogin }>
 						Iniciar sesión
 					</Button>
@@ -91,7 +82,7 @@ export const LoginScreen = ({ navigation }: Props) => {
 					<Button 
 						mode="contained"
 						uppercase={ false }
-						style={ styles.buttonRegister } 
+						style={ loginStyles.buttonRegister } 
 						onPress={() => console.log('Pressed')}>
 						Registrar mi cuenta
 					</Button>
@@ -99,7 +90,7 @@ export const LoginScreen = ({ navigation }: Props) => {
 						mode="text"
 						color={ colors.secondary }
 						uppercase={ false }
-						style={ styles.buttonRecovery } 
+						style={ loginStyles.buttonRecovery } 
 						onPress={() => console.log('Pressed')}>
 						¿Olvidaste tu cuenta?
 					</Button>

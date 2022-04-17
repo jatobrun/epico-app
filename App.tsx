@@ -4,25 +4,19 @@ import { Navigation } from './src/navigation/Navigation';
 
 import { Provider as PaperProvider } from 'react-native-paper';
 import ThemePaper from './src/theme/Theme';
-import { AuthProvider } from './src/context/authContext/AuthContext';
 
-const AppState = ({ children }: any) => {
-  return (
-    <AuthProvider>
-      { children }
-    </AuthProvider>
-  )
-}
+import { Provider } from 'react-redux';
+import store from './src/store';
 
 const App = () => {
   return (
-    <PaperProvider theme={ThemePaper}>
-      <NavigationContainer>
-        <AppState>
+    <Provider store={ store }>
+      <PaperProvider theme={ThemePaper}>
+        <NavigationContainer>
           <Navigation />
-        </AppState>
-      </NavigationContainer>
-    </PaperProvider>
+        </NavigationContainer>
+      </PaperProvider>
+    </Provider>
   )
 }
 

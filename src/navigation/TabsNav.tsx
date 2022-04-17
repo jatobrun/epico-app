@@ -5,7 +5,7 @@ import { HomeScreen } from '../screens/HomeScreen';
 import EntrepreneursScreen from '../screens/Entrepreneurs';
 import ActivitiesScreen from '../screens/Activities';
 import CalendarScreen from '../screens/Calendar';
-import TicketsScreen from '../screens/Tickets';
+import { TicketsScreen } from '../screens/Tickets';
 import { View } from 'react-native';
 import { styles } from '../theme';
 import { colors } from '../theme/colors';
