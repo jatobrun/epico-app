@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text } from 'react-native';
 import { colors } from '../theme/colors';
 
-export const Derechos = () => {
+export const MyCopyright = () => {
   return (
     <View>
         <Text style={{ 
