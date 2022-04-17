@@ -20,17 +20,15 @@ export const LoginScreen = ({ navigation }: Props) => {
 
 	const dispatch = useDispatch();
 
-    const { correo, password, onChange } = useForm({
-		correo: 'constantino.isaias@mail.com',
-		password: '0111111111' 
+    const { correo, password } = useForm({
+		correo: '',
+		password: '' 
 	});
 	const { token , user , codigo } = useSelector(( state: RootState ) => state.Auth );
 
     const onLogin = () => {
         Keyboard.dismiss();
 		dispatch( doLogin( correo, password ) );
-        console.log( token , user , codigo );
-		navigation.navigate('Tabs')
     }
 
 	const inputLogin = ''
