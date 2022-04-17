@@ -11,7 +11,7 @@ import { doLogin } from '../store/features/auth/actions';
 import { SeparatorTagline } from '../components/SeparatorTagline';
 import { loginStyles } from '../theme/styles/login';
 import { colors } from '../theme/colors';
-import { Copyright } from '../components/Copyright';
+import { MyCopyright } from '../components/Copyright';
 import { RootState } from '../store';
 
 interface Props extends NativeStackScreenProps<any, any> {}
@@ -96,7 +96,7 @@ export const LoginScreen = ({ navigation }: Props) => {
 					</Button>
 				</View>
 			</View>
-		
+			<MyCopyright />
 		</SafeAreaView>
 	)
 }
