@@ -4,13 +4,12 @@ import EpicoApi from "../../../api/epicoApi";
 import { LoginResponse } from "../../../interfaces/authInterfaces";
 
 const doLogin = ( correo : string , password : string ) => {
-    return async ( dispatch : any ) => {
+    return async ( dispatch : any ) : Promise<LoginResponse> => {
         const formData = new FormData();
         formData.append('usuario' , correo )
         formData.append('password' , password )
         const { data } = await EpicoApi.post<LoginResponse>('/login/', formData );
         if ( data.codigo === '1' ) {
-            console.log('correcto')
             await AsyncStorage.setItem('token', data.token );
             dispatch( setAuthParams({
                 user : data.data,
@@ -20,10 +19,16 @@ const doLogin = ( correo : string , password : string ) => {
             }))
         }
         if ( data.codigo === '0' ) {
-            console.warn('INCORRECTO')
             dispatch( setNotAuthenticated() );
         }
         return data
+    }
+}
+
+const logout = async()  => {
+    return async ( dispatch : any ) => {
+        await AsyncStorage.removeItem('token');
+        dispatch( setNotAuthenticated() );
     }
 }
 
@@ -39,5 +44,6 @@ const checkToken = async( ) => {
 
 export  {
     doLogin,
+    logout,
     checkToken
 }
