@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { setAuthParams , setNotAuthenticated } from ".";
 import EpicoApi from "../../../api/epicoApi";
-import { LoginResponse } from "../../../interfaces/authInterfaces";
+import { LoginResponse } from "../../../features/auth/interfaces/LoginResponse";
 
 const doLogin = ( correo : string , password : string ) => {
     return async ( dispatch : any ) : Promise<LoginResponse> => {
@@ -12,7 +12,7 @@ const doLogin = ( correo : string , password : string ) => {
         if ( data.codigo === '1' ) {
             await AsyncStorage.setItem('token', data.token );
             dispatch( setAuthParams({
-                user : data.data,
+                user : data.usuario,
                 token: data.token,
                 codigo: data.codigo,
                 status: 'authenticated'
@@ -38,8 +38,6 @@ const checkToken = async( ) => {
         // No token, no autenticado
         if ( !token ) return dispatch( setNotAuthenticated() );
     }
-        
-
 }
 
 export  {

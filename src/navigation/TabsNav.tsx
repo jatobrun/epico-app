@@ -58,7 +58,7 @@ export default function TabsNav() {
       >
         <Tab.Screen
         options={{
-          headerShown: true
+          headerShown: false
         }} name="Home" component={ HomeScreen } />
         <Tab.Screen name="Activities" component={ ActivitiesScreen } />
         <Tab.Screen name="Tickets" component={ TicketsScreen } />

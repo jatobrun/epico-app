@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { Usuario } from '../../../features/auth/interfaces/LoginResponse';
 
-import { LoginResponse, Usuario } from '../../../interfaces/authInterfaces';
 
 export type AuthState = {
     user: Usuario | null,
@@ -31,17 +31,12 @@ export const authSlice  = createSlice({
     initialState : initialState,
     reducers: {
         setAuthParams: ( state , action : ActionParams ) => {
-            state.token = action.payload.token;
-            state.user = action.payload.user;
-            state.codigo = action.payload.codigo;
-            state.status = action.payload.status;
+            return {
+                ...state,
+                ...action.payload
+            }
         },
-        setNotAuthenticated : ( state ) => {
-            state.token = null
-            state.user = null
-            state.codigo = null
-            state.status = 'not-authenticated'
-        }
+        setNotAuthenticated : ( state ) => initialState
     }
 });
 

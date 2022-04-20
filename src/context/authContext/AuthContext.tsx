@@ -3,28 +3,28 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import epicoApi from '../../api/epicoApi';
 
-import { Usuario, LoginResponse, LoginData  } from '../../interfaces/authInterfaces';
+import { Usuario, LoginResponse, LoginData  } from '../../features/auth/interfaces/loginResponse';
 import { authReducer, AuthState } from './AuthReducer';
 
 type AuthContextProps = {
     errorMessage: string;
     token: string | null;
     user: Usuario | null;
+    isLoading: boolean;
     status: 'checking' | 'authenticated' | 'not-authenticated';
     signIn: ( loginData: LoginData ) => void;
     logOut: () => void;
+    isLoad: ( loading : boolean ) => void;
     removeError: () => void;
-    fakeLogin: () => void;
 }
 
 const authInicialState: AuthState = {
     status: 'checking',
     token: null,
     user: null,
+    isLoading: false,
     errorMessage: ''
 }
-
-
 
 export const AuthContext = createContext({} as AuthContextProps);
 
@@ -55,15 +55,35 @@ export const AuthProvider = ({ children }: any)=> {
     const signIn = async({ correo, password }: LoginData ) => {
 
         try {
-            //ToDo: Revisar que el response no es un json
-            // const { data } = await epicoApi.post<any>('/login/', { usuario : correo, password } );
-            // console.log( data )
-            // const { token, usuario } : LoginResponse = JSON.parse( data );
             dispatch({ 
-                type: 'fakeLogin'
-            });
-
-            // await AsyncStorage.setItem('token', data.token );
+                type: 'isLoad' , 
+                payload: { loading: true }
+            })
+            const formData = new FormData();
+            
+            formData.append('usuario' , correo )
+            formData.append('password' , password )
+            const { data } = await epicoApi.post<LoginResponse>('/login/', formData );
+            console.log( data )
+            if ( data.codigo === '1' ) {
+                await AsyncStorage.setItem('token', data.token );
+                dispatch({ 
+                    type: 'signUp',
+                    payload: {
+                        token: data.token,
+                        user: data.usuario
+                    }
+                });
+            } else {
+                dispatch({ 
+                    type: 'addError', 
+                    payload: 'Información incorrecta'
+                })
+            }
+            dispatch({ 
+                type: 'isLoad' , 
+                payload: { loading: false }
+            })
 
         } catch (error: any) {
             dispatch({ 
@@ -73,13 +93,12 @@ export const AuthProvider = ({ children }: any)=> {
         }
     };
     
+    const isLoad = ( loading : boolean ) => {
+        dispatch({ type: 'isLoad' , payload: { loading: loading } });
+    };
     const logOut = async() => {
         await AsyncStorage.removeItem('token');
         dispatch({ type: 'logout' });
-    };
-
-    const fakeLogin = async() => {
-        dispatch({ type: 'fakeLogin' });
     };
 
     const removeError = () => {
@@ -91,7 +110,7 @@ export const AuthProvider = ({ children }: any)=> {
             ...state,
             signIn,
             logOut,
-            fakeLogin,
+            isLoad,
             removeError,
         }}>
             { children }
