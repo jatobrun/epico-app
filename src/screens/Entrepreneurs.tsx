@@ -2,6 +2,7 @@ import { View, Text, StyleSheet,FlatList} from 'react-native'
 import React, { useState } from 'react'
 import { Searchbar,Button } from 'react-native-paper'
 import { Flex } from '@ant-design/react-native';
+import { mdiMargin } from '@mdi/js';
 
 export default function Entrepreneurs() {
   const [searchQuery, setSearchQuery] = React.useState('');
@@ -10,7 +11,13 @@ export default function Entrepreneurs() {
     { id: '1', title: 'First item' },
     { id: '2', title: 'Second item' },
     { id: '3', title: 'Third item' },
-    { id: '4', title: 'Fourth item' }
+    { id: '4', title: 'Fourth item' },
+    { id: '5', title: 'Five item' },
+    { id: '6', title: 'Six item' },
+    { id: '7', title: 'Seven item' },
+    { id: '8', title: 'Eight item' },
+  
+   
   ];
 
   const onChangeSearch = (query: React.SetStateAction<string>) => setSearchQuery(query);
@@ -19,9 +26,13 @@ export default function Entrepreneurs() {
   };
   return (
     <View style={styles.container}>
-        <Text>Red de Emprendedores</Text>
+       
     <View style={styles.buscador}>
+      
       <View style={styles.box}>
+        <View style={styles.texto}>
+         <Text >Red de Emprendedores</Text>
+         </View>
       <Searchbar
        
          placeholder="Buscar por propietario,negocio,dirección."
@@ -50,9 +61,11 @@ export default function Entrepreneurs() {
           <View style={styles.listItem}>
             <Text style={styles.listItemText}>{item.title}</Text>
           </View>
+          
         )}
       />
-    </View>
+      </View>
+   
   );
 }
   const styles = StyleSheet.create({
@@ -61,30 +74,39 @@ export default function Entrepreneurs() {
     
     },
     buscador:{
+      marginLeft:20,
       flex: 1,
       flexDirection: 'row',
      
-      marginBottom: 10
+      
      
+    },
+
+    texto:{
+marginBottom:10,
     },
     box: {
       flex: 1,
-      height: 100,
+      height: 50,
+      marginTop:10,
      
     },
     box2:{
+
+      marginTop:40,
     
 
     },
     listItem: {
-      marginTop: 20,
-      padding: 20,
-      alignItems: 'center',
+      marginTop: 10,
+      padding: 15,
+      
       backgroundColor: '#fff',
       width: '100%'
     },
     listItemText: {
       fontSize: 18
-    }
-    
+    },
+   
+
   });

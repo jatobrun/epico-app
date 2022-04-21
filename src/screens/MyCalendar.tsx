@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Alert, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {Agenda, DateData, AgendaEntry, AgendaSchedule} from 'react-native-calendars';
-import testIDs from '../testIDs';
+
 
 interface State {
   items?: AgendaSchedule;
@@ -17,7 +17,7 @@ export default class AgendaScreen extends Component<State> {
       <Agenda
         items={this.state.items}
         loadItemsForMonth={this.loadItems}
-        selected={'2022-04-13'}
+        selected={'2022-04-20'}
         renderItem={this.renderItem}
         renderEmptyDate={this.renderEmptyDate}
         rowHasChanged={this.rowHasChanged}
