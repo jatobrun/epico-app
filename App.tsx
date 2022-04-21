@@ -10,6 +10,7 @@ import store from './src/store';
 import { SideNav } from './src/navigation/navigators/SideNav';
 import { MainNav } from './src/navigation/MainNav';
 import { Navigation } from './src/navigation/Navigation';
+import { AuthNav } from './src/navigation/navigators/AuthNav';
 
 const App = () => {
 

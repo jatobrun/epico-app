@@ -16,17 +16,15 @@ export const LoginForm = () => {
 		correo: 'constantino.isaias@mail.com',
 		password: '0111111111' 
 	});
-	
 
-	useEffect(() => {
-		if( errorMessage.length === 0 ) return;
-		Alert.alert( 'Login incorrecto', errorMessage,[{
-			text: 'Ok',
-			onPress: removeError
-		}]);
-	}, [ errorMessage ])
+	// useEffect(() => {
+	// 	if( errorMessage.length === 0 ) return;
+	// 	Alert.alert( 'Login incorrecto', errorMessage,[{
+	// 		text: 'Ok',
+	// 		onPress: removeError
+	// 	}]);
+	// }, [ errorMessage ])
 
-	
     const onLogin = () => {
         Keyboard.dismiss();
 		console.log( correo, password )

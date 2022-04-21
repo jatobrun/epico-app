@@ -20,16 +20,16 @@ export default function TabsNav() {
           let iconName = 'home';
           switch ( route.name ) {
             case 'Home':
-              iconName = 'home'
+              iconName = 'home';
               break;
             case 'Entrepreneurs':
-              iconName = 'account-group'
+              iconName = 'account-group';
               break;
             case 'Activities':
-              iconName = 'bulletin-board'
+              iconName = 'bulletin-board';
               break;
             case 'Calendar':
-              iconName = 'calendar-month-outline'
+              iconName = 'calendar-month-outline';
               break;
           }
           if ( route.name == 'Tickets' ) {

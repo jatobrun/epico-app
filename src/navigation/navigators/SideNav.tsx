@@ -8,7 +8,6 @@ import {
   DrawerContentComponentProps, 
   DrawerContentScrollView, 
   DrawerNavigationOptions, 
-  DrawerScreenProps 
 } from '@react-navigation/drawer';
 import { TabsNav } from './TabsNav';
 import { MyAccountScreen } from '../../features/account/screens/MyAccountScreen';
@@ -26,21 +25,8 @@ export const SideNav = () => {
       screenOptions={ _screenOptions }
       drawerContent={ (props) => <SideContent {...props} /> }
     >
-      <Drawer.Screen 
-        options={{
-          title: 'Inicio',
-          headerShown: true,
-        }}
-        name="Tabs" 
-        component={ TabsNav } 
-      />
-      <Drawer.Screen 
-        options={{
-          title: 'Mi cuenta'
-        }}
-        name="Profile" 
-        component={ MyAccountScreen } 
-      />
+      <Drawer.Screen name="Tabs" component={ TabsNav } />
+      <Drawer.Screen name="Profile" component={ MyAccountScreen } />
     </Drawer.Navigator>
   )
 }

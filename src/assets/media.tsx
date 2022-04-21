@@ -4,6 +4,7 @@ export const images = {
     logoAlcaldia: require('./images/brands/logo-alcaldia-guayaquil.png'),
     logoCe: require('./images/brands/logo-centro-de-emprendimiento.png'),
     avatarDefault: require('./images/avatar-default.jpg'),
+    tagIcon: require('./images/tag-icon.png'),
 }
 
 export default {

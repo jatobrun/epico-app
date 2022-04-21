@@ -1,15 +1,18 @@
 import React, { useEffect } from 'react';
-import { TouchableOpacity, View } from 'react-native';
-import { Button, Text } from 'react-native-paper';
+import { View } from 'react-native';
+import { Text } from 'react-native-paper';
 import { DrawerScreenProps } from '@react-navigation/drawer';
-import Maticon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Welcome } from '../components/Welcome';
+import { PageTitle } from '../../../components/PageTitle';
 
 interface Props extends DrawerScreenProps<any, any>{};
 
 export const HomeScreen = ( { navigation } : Props ) => {
   return (
     <View>
-        <Text>Home Screen</Text>
+      <PageTitle title="Inicio"/>
+      <Welcome />
+      <Text>Home Screen</Text>
     </View>
   )
 }
