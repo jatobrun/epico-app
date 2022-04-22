@@ -13,8 +13,8 @@ La aplicacion fue desarrollada usando el framework **REACT NATIVE** para Typescr
 |   Nombre          |   Rol         |
 | ---               | ---           |
 | Jamil Torres      | Scruem Master |
-| La Fuente         | Product Owner |
-| Esteban           | StakeHolder   |
+| Juan La Fuente    | Product Owner |
+| Ernesto Ruales    | StakeHolder   |
 | Santiago Mora     | Developer     |
 | Victor Pantoja    | Developer     |
 | Ronny Joza        | Developer     |
