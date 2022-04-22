@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { Alert, Keyboard, View } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
-import { Separator } from '../../shared/components/Separator';
+import { Separator } from '../../../components/Separator';
 import { AuthContext } from '../../../context/authContext/AuthContext';
 import { useForm } from '../../../hooks/useForm';
 import { colors } from '../../../theme/colors';

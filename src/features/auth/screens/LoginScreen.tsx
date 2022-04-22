@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { SafeAreaView } from 'react-native';
-import { LoadingModal } from '../../shared/components/LoadingModal';
+import { LoadingModal } from '../../../components/LoadingModal';
 import { AuthContext } from '../../../context/authContext/AuthContext';
 import { LoginFooter } from '../components/LoginFooter';
 import { LoginForm } from '../components/LoginForm';
