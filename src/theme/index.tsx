@@ -5,5 +5,8 @@ export const styles = StyleSheet.create({
     mainContainer: {
         marginHorizontal: 24
     },
+    pageInnerTab: {
+        paddingBottom: 120
+    },
     ...navigationStyle
 })

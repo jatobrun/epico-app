@@ -2,17 +2,20 @@ import React from 'react'
 import { View, Text } from 'react-native';
 import { colors } from '../theme/colors';
 
-export const Copyright = () => {
+const date : Date = new Date();
+
+export const MyCopyright = () => {
   return (
     <View>
-        <Text style={{ 
-            fontSize: 14, 
-            textAlign: 'center',
-            marginBottom: 15,
-            color: colors.grey2 
-        }}>
-            Todos los derechos reservados ® 2022 ÉPICO
-        </Text>
+      <Text style={{
+        fontSize: 14, 
+        textAlign: 'center',
+        marginBottom: 15,
+        color: colors.grey1,
+        textTransform: 'uppercase'
+      }}>
+        Todos los derechos reservados ® { date.getFullYear() } ÉPICO
+      </Text>
     </View>
   )
 }

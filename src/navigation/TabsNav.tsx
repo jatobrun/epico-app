@@ -4,8 +4,8 @@ import Maticon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { HomeScreen } from '../screens/HomeScreen';
 import EntrepreneursScreen from '../screens/Entrepreneurs';
 import ActivitiesScreen from '../screens/Activities';
-import CalendarScreen from '../screens/Calendar';
-import TicketsScreen from '../screens/Tickets';
+import CalendarScreen from '../screens/MyCalendar';
+import { TicketsScreen } from '../screens/Tickets';
 import { View } from 'react-native';
 import { styles } from '../theme';
 import { colors } from '../theme/colors';
@@ -20,16 +20,16 @@ export default function TabsNav() {
           let iconName = 'home';
           switch ( route.name ) {
             case 'Home':
-              iconName = 'home'
+              iconName = 'home';
               break;
             case 'Entrepreneurs':
-              iconName = 'account-group'
+              iconName = 'account-group';
               break;
             case 'Activities':
-              iconName = 'bulletin-board'
+              iconName = 'bulletin-board';
               break;
             case 'Calendar':
-              iconName = 'calendar-month-outline'
+              iconName = 'calendar-month-outline';
               break;
           }
           if ( route.name == 'Tickets' ) {
@@ -58,12 +58,12 @@ export default function TabsNav() {
       >
         <Tab.Screen
         options={{
-          headerShown: true
+          headerShown: false
         }} name="Home" component={ HomeScreen } />
         <Tab.Screen name="Activities" component={ ActivitiesScreen } />
         <Tab.Screen name="Tickets" component={ TicketsScreen } />
         <Tab.Screen name="Entrepreneurs" component={ EntrepreneursScreen } />
-        <Tab.Screen name="Calendar" component={ CalendarScreen } />
+        <Tab.Screen name="Calendario" component={ CalendarScreen } />
     </Tab.Navigator>
   )
 }

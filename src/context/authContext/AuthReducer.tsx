@@ -1,9 +1,10 @@
-import { Usuario } from '../../interfaces/appInterfaces';
+import { Usuario } from '../../features/auth/interfaces/loginResponse';
 
 export interface AuthState {
     status: 'checking' | 'authenticated' | 'not-authenticated';
     token: string | null;
     errorMessage: string;
+    isLoading: boolean;
     user: Usuario | null;
 }
 
@@ -13,7 +14,7 @@ type AuthAction =
     | { type: 'removeError' }
     | { type: 'notAuthenticated' }
     | { type: 'logout' }
-    | { type: 'fakeLogin' }
+    | { type: 'isLoad' , payload: { loading: boolean} }
 
 
 export const authReducer = ( state: AuthState, action: AuthAction ): AuthState => {
@@ -43,14 +44,11 @@ export const authReducer = ( state: AuthState, action: AuthAction ): AuthState =
                 user: action.payload.user
             }
 
-        case 'fakeLogin':
+        case 'isLoad':
             return {
                 ...state,
-                errorMessage: '',
-                status: 'authenticated',
-                token: 'EPICOAPP'
+                isLoading: action.payload.loading,
             }
-
 
         case 'logout':
         case 'notAuthenticated':

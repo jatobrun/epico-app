@@ -1,28 +1,31 @@
-import React from 'react';
+import 'react-native-gesture-handler';
+import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { Navigation } from './src/navigation/Navigation';
 
 import { Provider as PaperProvider } from 'react-native-paper';
 import ThemePaper from './src/theme/Theme';
-import { AuthProvider } from './src/context/authContext/AuthContext';
-
-const AppState = ({ children }: any) => {
-  return (
-    <AuthProvider>
-      { children }
-    </AuthProvider>
-  )
-}
+import SplashScreen from 'react-native-splash-screen';
+import { Provider } from 'react-redux';
+import store from './src/store';
+import { SideNav } from './src/navigation/navigators/SideNav';
+import { MainNav } from './src/navigation/MainNav';
+import { Navigation } from './src/navigation/Navigation';
+import { AuthNav } from './src/navigation/navigators/AuthNav';
 
 const App = () => {
+
+  useEffect(() => {
+      SplashScreen.hide();
+  }, []);
+
   return (
-    <PaperProvider theme={ThemePaper}>
-      <NavigationContainer>
-        <AppState>
-          <Navigation />
-        </AppState>
-      </NavigationContainer>
-    </PaperProvider>
+    <Provider store={ store }>
+      <PaperProvider theme={ThemePaper}>
+        <NavigationContainer>
+          <SideNav />
+        </NavigationContainer>
+      </PaperProvider>
+    </Provider>
   )
 }
 

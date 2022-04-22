@@ -1,6 +1,5 @@
 import React, { Key } from 'react';
 import { View,Text, StyleSheet, Pressable} from 'react-native'; 
-import Navigation from '../navigation/Navigation';
 import { NavigationContainer } from '@react-navigation/native';
 
 type ItemsProp ={
