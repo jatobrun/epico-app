@@ -13,7 +13,7 @@ import { TabsNav } from './TabsNav';
 import { MyAccountScreen } from '../../features/account/screens/MyAccountScreen';
 import { colors } from '../../theme/colors';
 import media, { images } from '../../assets/media';
-import { Separator } from '../../components/Separator';
+import { Separator } from '../../features/shared/components/Separator';
 
 const Drawer = createDrawerNavigator();
 

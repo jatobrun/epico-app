@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
 import { Button, Text } from 'react-native-paper';
-import { PageTitle } from '../../../components/PageTitle';
+import { PageTitle } from '../../shared/components/PageTitle';
 
 export const MyActivitiesScreen = () => {
   return (

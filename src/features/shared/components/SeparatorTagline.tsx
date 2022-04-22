@@ -1,7 +1,7 @@
 import React from 'react'
 import { Image, StyleSheet, View } from 'react-native'
-import { images } from '../assets/media'
-import { colors } from '../theme/colors'
+import { images } from '../../../assets/media'
+import { colors } from '../../../theme/colors'
 
 
 export const SeparatorTagline = () => {

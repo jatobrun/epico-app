@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Alert, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Agenda, AgendaEntry, AgendaSchedule, DateData } from 'react-native-calendars';
 import { Text } from 'react-native-paper';
-import { PageTitle } from '../../../components/PageTitle';
+import { PageTitle } from '../../shared/components/PageTitle';
 
 
 

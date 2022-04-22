@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { Text } from 'react-native-paper';
 import { DrawerScreenProps } from '@react-navigation/drawer';
 import { Welcome } from '../components/Welcome';
-import { PageTitle } from '../../../components/PageTitle';
+import { PageTitle } from '../../shared/components/PageTitle';
 
 interface Props extends DrawerScreenProps<any, any>{};
 
