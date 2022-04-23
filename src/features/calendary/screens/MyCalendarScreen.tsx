@@ -84,18 +84,18 @@ export const MyCalendarScreen = () => {
     return date.toISOString().split('T')[0];
   }
   return (
-    <View>
+    
+    <>
         <PageTitle title="Calendario Actividades" />
         <Agenda
           items={ state.items }
           loadItemsForMonth={ loadItems }
-          selected={'2022-04-20'}
+          selected={'2022-04-23'}
           renderItem={ renderItem }
           renderEmptyDate={ renderEmptyDate }
           rowHasChanged={ rowHasChanged }
-          showClosingKnob={true}
-        />
-    </View>
+          showClosingKnob={true}/>
+    </>
   )
 }
 

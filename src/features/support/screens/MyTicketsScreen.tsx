@@ -1,9 +1,10 @@
 import React,{useState }from 'react';
-import { Button, StyleSheet, View,Text,TextInput} from "react-native";
+import { StyleSheet, View,TextInput} from "react-native";
 import Dialog from "react-native-dialog";
 import {Picker} from '@react-native-picker/picker';
 import { Table, TableWrapper, Row, Rows, Col } from 'react-native-table-component';
 import { PageTitle } from '../../../components/PageTitle';
+import { Button, Text } from 'react-native-paper';
 
 
 
@@ -13,10 +14,10 @@ export const MyTicketsScreen = () => {
   const[visibletable,setvisibleTable]=useState(false);
   const [selectedValue, setSelectedValue] = useState("soporte");
 
-  const tableHead = ['Head', 'Head2', 'Head3', 'Head4'];
+  const tableHead = ['Tipo Ticket', 'Categoria', 'Subcategoria', 'Descripcion'];
     const tableData = [
-      ['1', '2', '3', '4'],
-      ['a', 'b', 'c', 'd'],
+      ['Soporte Tecnico', 'Eventos', 'Trabajo', 'Requiero soporte'],
+      ['Notificacion', 'Formularios', 'Estudios', 'Ayuda con formulario'],
     ];
   
 
@@ -47,10 +48,10 @@ export const MyTicketsScreen = () => {
     <PageTitle title="Tickets" />
     <View style={styles.container}>
       <View style={styles.button}>
-      <Button title="Crear Ticket" onPress={showDialog} />
+      <Button  mode="contained" onPress={showDialog} >Crear Ticket</Button>
      </View>
      <View style={styles.button}>
-      <Button title="Ver Tickets" onPress={showTable} />
+      <Button  mode="contained" onPress={showTable} >Ver Tickets</Button>
       </View>
       <Dialog.Container visible={visible}>
          <Text>Tipo Ticket</Text>
@@ -66,23 +67,35 @@ export const MyTicketsScreen = () => {
       <Text>Categoria</Text>
       <Picker
         selectedValue={selectedValue}
-        style={{ height: 50, width: 200 }}
+        style={{ height: 100, width: 210 }}
         onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
       >
        
         <Picker.Item label="Reagendamiento" value="reagendamiento" />
         <Picker.Item label="Cancelar Agenda" value="cancelar" />
+        <Picker.Item label="Reservar Espacio" value="reservar" />
+        <Picker.Item label="Eventos" value="evento" />
+        <Picker.Item label="Formularios" value="formulario" />
+        <Picker.Item label="Atrevete" value="atrevete" />
+        <Picker.Item label="Red de emprendedores" value="red" />
+        <Picker.Item label="Sugerencias" value="sugerencia" />
+        <Picker.Item label="Notificacion" value="notificacion" />
+        <Picker.Item label="Asistencia Tecnica" value="asistencia" />
       </Picker>
 
       <Text>SubCategoria</Text>
       <Picker
         selectedValue={selectedValue}
-        style={{ height: 50, width: 200 }}
+        style={{ height: 50, width: 240 }}
         onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
       >
        
         <Picker.Item label="Calamidad Domestica" value="caladom" />
         <Picker.Item label="Calamidad Familiar" value="calafam" />
+        <Picker.Item label="Tramite Externo" value="tramite" />
+        <Picker.Item label="Trabajo" value="trabajo" />
+        <Picker.Item label="Estudios" value="estudio" />
+        <Picker.Item label="Otro" value="otro" />
       </Picker>
       <Text>Descripcion</Text>
       <TextInput
@@ -96,8 +109,8 @@ export const MyTicketsScreen = () => {
 
       <Dialog.Container visible={visibletable}>
       <Table>
-          <Row data={tableHead} style={styles.head} textStyle={styles.text}/>
-          <Rows data={tableData} style={styles.row} textStyle={styles.text}/>
+          <Row data={tableHead} style={styles.head}/>
+          <Rows data={tableData} style={styles.row} />
         </Table>
          <Dialog.Button label="Salir" onPress={handleCancelTable} />
       </Dialog.Container>
@@ -120,9 +133,9 @@ const styles = StyleSheet.create({
  
     padding: 10,
   },
-  head: { height: 50, backgroundColor: '##4680ff' },
+  head: { height: 60, backgroundColor: '##4680ff',width:350 },
   text: { marginLeft: 5 },
-  row: { height: 50 },
+  row: { height: 50,width:350 },
   button:{
     alignSelf:'center',
     borderRadius:20,
