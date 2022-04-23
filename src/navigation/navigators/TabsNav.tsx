@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Maticon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Anticon from 'react-native-vector-icons/AntDesign';
 
 import { MyActivitiesScreen } from '../../features/activity/screens/MyActivitiesScreen';
 import { MyCalendarScreen }   from '../../features/calendary/screens/MyCalendarScreen';
@@ -29,8 +28,8 @@ export const TabsNav = () => {
             case 'Activities':
               iconName = 'bulletin-board'
               break;
-            case 'Calendar':
-              iconName = 'calendar-month-outline'
+            case 'MyCalendar':
+              iconName = 'calendar'
               break;
           }
           

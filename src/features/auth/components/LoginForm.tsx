@@ -10,11 +10,12 @@ import { loginFormStyle } from '../styles/LoginFormStyle';
 
 export const LoginForm = () => {
 	const dispatch = useDispatch();
+	const [ passwordVisible, setPasswordVisible ] = useState(true)
 	const [ loading, setLoading ] = useState(false);
 
-	const { correo, password } = useForm({
-		correo: 'constantino.isaias@mail.com',
-		password: '0111111111' 
+	const { correo, password, onChange } = useForm({
+		correo: '',
+		password: '' 
 	});
 	
 
@@ -30,6 +31,7 @@ export const LoginForm = () => {
 				label="Usuario"
 				placeholder="Ingrese su usuario"
 				value={ correo }
+				onChangeText={ (value) => onChange( value , 'correo') }
 				autoCapitalize="none"
 				autoCorrect={ false }
 			/>
@@ -38,6 +40,16 @@ export const LoginForm = () => {
 				label="Contraseña"
 				placeholder="Ingrese su contraseña"
 				value={ password }
+				onChangeText={ (value) => onChange( value , 'password') }
+				autoCapitalize="none"
+				autoCorrect={ false }
+				secureTextEntry={passwordVisible}
+				right={
+					<TextInput.Icon 
+						name={ passwordVisible ? "eye" : "eye-off" } 
+						onPress={ () => setPasswordVisible(!passwordVisible) } 
+					/>
+				}
 			/>
 			<Separator />
 			<Button 
