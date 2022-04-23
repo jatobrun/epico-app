@@ -90,6 +90,7 @@ export const doLogin = ( correo : string , password : string ) => {
         formData.append('password' , password )
         const response = await EpicoApi.post<LoginResponse>('/login/', formData );
         const { codigo, data, mensaje, token  } = response.data
+        console.log( response.data )
         if ( codigo === '1' ) {
             await AsyncStorage.setItem('token', token );
             await AsyncStorage.setItem('codigo', codigo );
