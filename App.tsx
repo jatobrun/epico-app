@@ -19,13 +19,13 @@ const App = () => {
   }, []);
 
   return (
-    <Provider store={ store }>
       <PaperProvider theme={ThemePaper}>
-        <NavigationContainer>
-          <SideNav />
-        </NavigationContainer>
+        <Provider store={ store }>
+            <NavigationContainer>
+              <MainNav />
+            </NavigationContainer>
+        </Provider>
       </PaperProvider>
-    </Provider>
   )
 }
 

@@ -1,14 +1,13 @@
 import { configureStore , combineReducers } from '@reduxjs/toolkit';
-import Auth from './features/auth';
+import { authSlice, AuthState } from './features/auth.store';
+export interface AppStore {
+    auth: AuthState;
+}
 
-const rootReducer = combineReducers({
-    Auth
-})
-
-export type RootState = ReturnType<typeof rootReducer >;
-
-const store = configureStore({
-    reducer: rootReducer
+const store = configureStore<AppStore>({
+    reducer: {
+        auth: authSlice.reducer
+    }
 })
 
 export default store;

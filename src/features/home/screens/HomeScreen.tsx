@@ -12,7 +12,6 @@ export const HomeScreen = ( { navigation } : Props ) => {
     <View>
       <PageTitle title="Inicio"/>
       <Welcome />
-      <Text>Home Screen</Text>
     </View>
   )
 }

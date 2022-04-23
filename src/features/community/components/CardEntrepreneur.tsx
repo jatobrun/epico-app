@@ -4,16 +4,26 @@ import { Text } from 'react-native-paper';
 import { images } from '../../../assets/media';
 import { colors } from '../../../theme/colors';
 
-export const CardEntrepreneur = () => {
+export const CardEntrepreneur = ( props : any ) => {
+  const { person } = props
+
+  const  ImageRestApi = 'https://epico.gob.ec/archivos/foto_perfil_2787.png'
   return (
     <TouchableOpacity style={ styles.card }>
-      <Image
-        style={ styles.avatar } 
-        source={ images.avatarDefault }
-      />
+      <View style={{ 
+        width: 60,
+        height: 60,
+        backgroundColor: 'grey',
+        marginRight: 16
+      }}>
+        <Image
+          style={ styles.avatar } 
+          source={{ uri : ImageRestApi }}
+        />
+      </View>
       <View>
-        <Text style={ styles.entrepreneurName }>Santiago Amador Mora Merchán</Text>
-        <Text>santiagomora.com</Text>
+        <Text style={ styles.entrepreneurName }>{ person.apellido } { person.nombre }</Text>
+        <Text>{ person.frase_perfil }</Text>
       </View>
     </TouchableOpacity>
   )
@@ -28,11 +38,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1
   },
   avatar: { 
+    flex: 1,
     width: 60,
     height: 60,
-    margin: 0,
-    resizeMode: 'contain',
-    marginRight: 16,
   },
   entrepreneurName: {
     fontSize: 18,
