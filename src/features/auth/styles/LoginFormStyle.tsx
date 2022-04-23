@@ -38,5 +38,11 @@ export const loginFormStyle = StyleSheet.create({
     },
 	buttons: {
 		alignItems: 'center'
+	},
+	snackBarMessage: {
+		position: 'absolute',
+		bottom: 0,
+		left: 15,
+		right: 15
 	}
 })

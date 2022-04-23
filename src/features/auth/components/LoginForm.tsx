@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Keyboard, View } from 'react-native';
-import { Button, TextInput } from 'react-native-paper';
+import { Button, HelperText, Snackbar, TextInput } from 'react-native-paper';
 import { useDispatch } from 'react-redux';
 import { Separator } from '../../../components/Separator';
 import { useForm } from '../../../hooks/useForm';
@@ -11,19 +11,26 @@ import { loginFormStyle } from '../styles/LoginFormStyle';
 export const LoginForm = () => {
 	const dispatch = useDispatch();
 	const [ passwordVisible, setPasswordVisible ] = useState(true)
+	const [ showError, setShowError ] = useState(false);
 	const [ loading, setLoading ] = useState(false);
 
 	const { correo, password, onChange } = useForm({
-		correo: '',
-		password: '' 
+		correo: 'margot.jimenez@mail.com',
+		password: '0444444444' 
 	});
 	
 
     const onLogin = () => {
-		setLoading( true )
         Keyboard.dismiss();
-		console.log( correo, password , loading)
-		dispatch( doLogin( correo, password ) )
+		if ( correo.length == 0 || password.length == 0 ) {
+			setShowError( true )
+			setTimeout(() => {
+				setShowError( false )
+			} , 3000 )
+		} else {
+			setLoading( true )
+			dispatch( doLogin( correo, password ) )
+		}
     }
 	return (
 		<View style={ loginFormStyle.formBox }>
@@ -51,6 +58,9 @@ export const LoginForm = () => {
 					/>
 				}
 			/>
+			<HelperText type="error" visible={ showError } style={{ textAlign: 'center', paddingTop: 10 }}>
+				Debe ingresar un correo y contraseña.
+			</HelperText>
 			<Separator />
 			<Button 
 				mode="contained" 
@@ -79,6 +89,7 @@ export const LoginForm = () => {
 				onPress={() => console.log('Pressed')}>
 				¿Olvidaste tu cuenta?
 			</Button>
+
 		</View>
 	)
 }
