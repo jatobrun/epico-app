@@ -1,34 +1,28 @@
-import React, { useContext, useEffect } from 'react';
-import { Alert, Keyboard, View } from 'react-native';
+import React, { useState } from 'react';
+import { Keyboard, View } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
+import { useDispatch } from 'react-redux';
 import { Separator } from '../../../components/Separator';
-import { AuthContext } from '../../../context/authContext/AuthContext';
 import { useForm } from '../../../hooks/useForm';
+import { doLogin } from '../../../store/features/auth.store';
 import { colors } from '../../../theme/colors';
 import { loginFormStyle } from '../styles/LoginFormStyle';
 
 export const LoginForm = () => {
+	const dispatch = useDispatch();
+	const [ loading, setLoading ] = useState(false);
 
-	const { signIn, errorMessage, removeError } = useContext( AuthContext );
-
-	
 	const { correo, password } = useForm({
 		correo: 'constantino.isaias@mail.com',
 		password: '0111111111' 
 	});
-
-	// useEffect(() => {
-	// 	if( errorMessage.length === 0 ) return;
-	// 	Alert.alert( 'Login incorrecto', errorMessage,[{
-	// 		text: 'Ok',
-	// 		onPress: removeError
-	// 	}]);
-	// }, [ errorMessage ])
+	
 
     const onLogin = () => {
+		setLoading( true )
         Keyboard.dismiss();
-		console.log( correo, password )
-        signIn({ correo, password });
+		console.log( correo, password , loading)
+		dispatch( doLogin( correo, password ) )
     }
 	return (
 		<View style={ loginFormStyle.formBox }>
@@ -48,10 +42,12 @@ export const LoginForm = () => {
 			<Separator />
 			<Button 
 				mode="contained" 
+				loading={ loading }
+				disabled={ loading }
 				uppercase={ false }
 				labelStyle={ loginFormStyle.buttonTextSignIn }
 				style={ loginFormStyle.buttonSignin } 
-				onPress={ onLogin }>
+				onPress={ () => onLogin() }>
 				Iniciar sesión
 			</Button>
 			<Separator />

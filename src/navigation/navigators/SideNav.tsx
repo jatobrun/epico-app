@@ -1,22 +1,24 @@
 import React from 'react';
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { Alert, Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import Maticon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Octicon from 'react-native-vector-icons/Octicons';
-import { Button, Text } from 'react-native-paper';
+import { Text } from 'react-native-paper';
 import { 
   createDrawerNavigator, 
   DrawerContentComponentProps, 
   DrawerContentScrollView, 
   DrawerNavigationOptions, 
 } from '@react-navigation/drawer';
+
 import { TabsNav } from './TabsNav';
 import { MyAccountScreen } from '../../features/account/screens/MyAccountScreen';
 import { colors } from '../../theme/colors';
-import media, { images } from '../../assets/media';
 import { Separator } from '../../components/Separator';
+import { doLogout } from '../../store/features/auth.store';
+import { SideNavHeader } from '../components/SideNavHeader';
 
 const Drawer = createDrawerNavigator();
-
 
 export const SideNav = () => {
   
@@ -30,6 +32,7 @@ export const SideNav = () => {
     </Drawer.Navigator>
   )
 }
+
 
 const _screenOptions : DrawerNavigationOptions = {
   headerStyle: {
@@ -62,42 +65,27 @@ const _screenOptions : DrawerNavigationOptions = {
 }
 
 const SideContent = ( { navigation }: DrawerContentComponentProps ) => {
+  const dispatch = useDispatch();
+  
+  const handleLogout =() => {
+    Alert.alert(
+      "Cerrar sesión",
+      "Desea cerrar la sesión del dispositivo.",
+      [
+        {
+          text: "Cancelar",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "Si, cerrar", onPress: () => dispatch( doLogout() ) }
+      ]
+    );
+    
+  }
   return (
     <DrawerContentScrollView>
       <Separator />
-      <View style={{
-        alignItems: 'center'
-      }}>
-        <Image 
-          style={{ 
-            width: 220,
-            height: 75,
-            margin: 0,
-            resizeMode: 'contain',
-          }} 
-          source={ images.logoCe } 
-        />
-        <Separator />
-        <View style={{ 
-          borderWidth: 4,
-          borderColor: colors.primary,
-        }}>
-          <Image
-            style={{ 
-              width: 80,
-              height: 80,
-              margin: 0,
-              resizeMode: 'contain',
-            }} 
-            source={ images.avatarDefault }
-          />
-        </View>
-        <Separator />
-        <Text style={{
-          fontSize: 18,
-          fontWeight: 'bold'
-        }}>Santiago Mora</Text>
-      </View>
+      <SideNavHeader />
       <Separator />
       <View>
         <TouchableOpacity style={ styles.listItemButton }
@@ -112,7 +100,9 @@ const SideContent = ( { navigation }: DrawerContentComponentProps ) => {
           <Maticon name="account-circle" size={28} color={ colors.textBlack } />
           <Text style={ styles.listItemText }>Mi cuenta</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={ styles.listItemButton }>
+        <TouchableOpacity style={ styles.listItemButton }
+          onPress={ () => handleLogout() }
+        >
           <Maticon name="logout" size={28} color={ colors.textBlack } />
           <Text style={ styles.listItemText }>Cerrar sesión</Text>
         </TouchableOpacity>

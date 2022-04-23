@@ -1,13 +1,16 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-paper';
+import { useSelector } from 'react-redux';
+import { AppStore } from '../../../store';
 import { colors } from '../../../theme/colors';
 
 export const Welcome = () => {
+    const { user } = useSelector( (store:AppStore) => store.auth )
   return (
     <View style={ styles.mainBox }>
         <Text style={ styles.headingTitle }>Hola de nuevo,</Text>
-        <Text style={ styles.headingSubTitle }>Santiago</Text>
+        <Text style={ styles.headingSubTitle }>{ user?.nombre }</Text>
     </View>
   )
 }
@@ -20,11 +23,11 @@ const styles = StyleSheet.create({
         borderRadius: 8
     },
     headingTitle: {
-        fontSize: 24,
+        fontSize: 22,
         fontWeight: '400'
     },
     headingSubTitle: {
-        fontSize: 32,
+        fontSize: 28,
         fontWeight: '700'
     }
 })
